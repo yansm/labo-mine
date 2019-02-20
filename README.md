@@ -1,2 +1,5 @@
-# labo-mine
-a mine from labo
+# labo-y
+a vue&amp;express layout
+
+### step2
+

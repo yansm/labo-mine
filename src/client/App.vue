@@ -2,9 +2,8 @@
   <div class="app full-height">
     <div class="monkey-header">
       <div class="container">
-        <div class="logo">monkey</div>
+        <div class="logo pointer" @click="$router.push('/')">monkey</div>
         <div class="menu-area">
-          <div class="menu-item menu-search pointer"></div>
         </div>
       </div>
     </div>
@@ -72,13 +71,24 @@ body,html,ul,li,ol,img,input,p,h1,h2,h3,h4,h5,h6
   top 0
   left 0
 .monkey-header
-  background #ffd100
+  background #262626
   height 56px
   line-height 56px
   .logo
     font-weight 700
     font-size 22px
+    color #ffffff
     float left
+    &:before
+      width 36px
+      height 36px
+      background url(./static/images/home/me.png) center center no-repeat
+      background-size contain
+      content ''
+      display inline-block
+      vertical-align middle
+      margin-right 10px      
+      transform translateY(-4px)
   .menu-area
     float right 
     white-space nowrap
@@ -107,7 +117,7 @@ body,html,ul,li,ol,img,input,p,h1,h2,h3,h4,h5,h6
   right 0
   bottom 0
   z-index 100000
-  background-color #ffd100
+  background-color #262626
 </style>
 <style lang="stylus">
 // 页面过渡动画
@@ -144,7 +154,7 @@ body,html,ul,li,ol,img,input,p,h1,h2,h3,h4,h5,h6
   left 50%
   margin-top -30px
   margin-left -30px
-  background-color #282828
+  background-color #ffd100
   animation rotateplane 1.2s infinite ease-in-out
  
 @-webkit-keyframes rotateplane 

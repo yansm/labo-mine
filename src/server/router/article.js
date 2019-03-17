@@ -43,6 +43,23 @@ function getArticle (id) {
 }
 
 const router = express.Router()
+router.post('/setList', (req, res) => {
+  const { body } = req
+  const {
+    list,
+  } = body
+  setList(list).then(({err}) => {
+    if(!err) {
+      res.json({
+        code: 0,
+        err,
+        data: list
+      })
+    }else {
+      res.send(500)
+    }
+  })
+})
 router.get('/list', (req, res) => {
   getList().then(({err, data}) => {
     res.json({

@@ -5,13 +5,16 @@
 				<div class="title">{{detail.title}}
 					<aside>{{date}}发布</aside>
 				</div>
-				<div class="content" v-html="detail.content"></div>
+				<div class="content ql-editor" v-html="detail.content"></div>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
 import moment from 'moment'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 moment.locale('zh-cn')
 export default {
 	data() {
@@ -56,6 +59,10 @@ export default {
 		img
 			margin-bottom 10px
 			max-width 100%
+.ql-editor
+	img
+		margin 0 auto
+		display block
 </style>
 
 

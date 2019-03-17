@@ -17,6 +17,12 @@ export default{
         return data.data
       })
     },
+    setArticles ({commit}, data) {
+      return axios.post('/article/setList', data).then(({data}) => {
+        commit('setArticles', data.data)
+        return data.data
+      })
+    },
     setArticle ({dispatch}, data) {
       return axios.post('/article/add', data)
     },

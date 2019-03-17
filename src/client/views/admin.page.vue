@@ -1,8 +1,12 @@
 <template>
   <div class="admin-content">
-    <div class="content-left">
-      <div class="article-item" :class="{active: item.id === id}" :key="item.id" v-for="item in articles" @click="editItem(item.id)">
+    <div class="content-left" >
+      <div class="article-item" :class="{active: item.id === id}" :key="item.id" v-for="(item, idx) in articles"
+        @click="editItem(item.id)"
+      >
         <div class="title">{{item.title}}</div>
+        <div class="up" @click.stop="change(idx, -1)">上</div>
+        <div class="down" @click.stop="change(idx, 1)">下</div>
       </div>
     </div>
     <div class="content-right">
@@ -30,7 +34,7 @@
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </Upload>
         </div>
-        <div class="content-area">
+        <div class="content-area" ref="content">
           <quill-editor 
             v-model="content"
             :options="editorOption"
@@ -111,6 +115,7 @@ export default {
       content: '',
       coverImg: '',
       time: new Date(),
+      lock: false
     }
   },
   components: {
@@ -126,6 +131,9 @@ export default {
 	},
   mounted() {
     this.$store.dispatch('article/getArticles')
+    const height = this.$refs.content.offsetHeight - 66 + 'px'
+    document.querySelector('.quill-editor:not(.bubble) .ql-container').style.height = height
+    document.querySelector('.quill-editor:not(.bubble) .ql-container .ql-editor').style.height = height
   },
   methods: {
     clean() {
@@ -157,6 +165,8 @@ export default {
       if(!this.id) {
         this.id = getUUID()
       }
+      console.log(this.content)
+      return
       this.$store.dispatch('article/setArticle', {
         id: this.id,
         content: this.content,
@@ -166,6 +176,26 @@ export default {
       }).then(res => {
         this.clean()
         this.$store.dispatch('article/getArticles')
+      })
+    },
+    change(idx, flag) {
+      if(this.lock) return
+      if(idx + flag < 0 || idx + flag >= this.articles.length) return
+      this.lock = true
+      const list = []
+      this.articles.map((d, i) => {
+        if(i === idx) {
+          list[i + flag] = d
+        } else if(i === idx + flag) {
+          list[idx] = d
+        } else {
+          list[i] = d
+        }
+      })
+      this.$store.dispatch('article/setArticles', {
+        list
+      }).then(d => {
+        this.lock = false
       })
     }
   }
@@ -257,24 +287,41 @@ export default {
       input 
         border none
   .content-area
-    height 100%
-    >>>.quill-editor:not(.bubble) .ql-container,
+    height 'calc(100% - 90px)' % 100%
     >>>.quill-editor:not(.bubble) .ql-container .ql-editor
-      min-height 500px
+      min-height 50px
   .article-item
     line-height 60px
     height 60px
-    font-size 24px
+    font-size 18px
     border-bottom 1px solid #eee
     padding 0 10px
     transition .3s
+    user-select none
     cursor pointer
+    position relative
     &:hover
       padding-left 20px
     .title
       overflow hidden
       text-overflow ellipsis
       width 200px
+    .up, .down
+      width 30px
+      height 30px
+      position absolute 
+      top 0
+      right 0
+      text-align center
+      line-height 30px
+      border-left 1px solid #eee
+    .down
+      border-top 1px solid #eee
+      top auto
+      bottom 0
+>>>.ql-editor img
+  margin 0 auto
+  display block
 </style>
 
 

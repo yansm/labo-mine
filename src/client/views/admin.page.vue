@@ -165,8 +165,6 @@ export default {
       if(!this.id) {
         this.id = getUUID()
       }
-      console.log(this.content)
-      return
       this.$store.dispatch('article/setArticle', {
         id: this.id,
         content: this.content,

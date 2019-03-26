@@ -63,6 +63,14 @@ export default {
 	img
 		margin 0 auto
 		display block
+@media screen and (max-width: 756px)
+	.monkey-detail-area
+		width 100%
+		.title
+			padding 15px 15px 10px
+		.content
+			>*
+				padding 0 15px
 </style>
 
 

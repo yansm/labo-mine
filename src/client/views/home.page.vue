@@ -36,6 +36,12 @@ export default {
 			content ""
 			display table
 			clear both
+
+@media screen and (max-width: 756px)
+	.monkey-articles-area
+		width 100%
+		>div
+			margin-right -10px
 </style>
 
 

@@ -1,6 +1,6 @@
 <template>
-	<div class="monkey-articles-item pointer" :class="{active}" @click="handleClick">
-		<div class="img">
+	<div class="monkey-articles-item pointer" ref="item" :class="{active}" @click="handleClick">
+		<div class="img" :style="{height: height + 'px'}">
 			<img :src="data.coverImg">
 		</div>
 		<div class="content">
@@ -17,7 +17,8 @@ moment.locale('zh-cn')
 export default {
 	data() {
 		return {
-			active: false
+			active: false,
+			height: 158,
 		}
 	},
   props: {
@@ -31,6 +32,7 @@ export default {
 		}
 	},
 	mounted() {
+		this.height = this.$refs.item.offsetWidth * 158 / 210
 		setTimeout(() => {
 			this.active = true
 		}, Math.floor(Math.random()*1000) + 300)
@@ -120,6 +122,12 @@ export default {
 			transition .3s
 			height 100%
 			width 100%
+@media screen and (max-width: 756px)
+	.monkey-articles-item
+		width 'calc(50% - 10px)' % 100%
+		margin 0 10px 10px 0
+		display inline-block
+		float initial
 </style>
 
 

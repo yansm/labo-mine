@@ -164,5 +164,10 @@ body,html,ul,li,ol,img,input,p,h1,h2,h3,h4,h5,h6
     transform: perspective(120px) rotateY(180deg)
   100%
     transform: perspective(120px) rotateY(180deg)  rotateX(180deg)
+
+@media screen and (max-width: 756px)
+  .container
+    width 100%
+    padding 0 12px
 </style>
 

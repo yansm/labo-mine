@@ -167,12 +167,15 @@ body,html,ul,li,ol,img,input,p,h1,h2,h3,h4,h5,h6
     transform: perspective(120px) rotateY(180deg)  rotateX(180deg)
 
 @media screen and (max-width: 756px)
+  .app
+    position fixed
+    top 0
+    left 0
+    right 0
+    bottom 0
   .container
     width 100%
     padding 0 12px
-		overflow hidden
-  .layout
-    position fixed
-    top 56px
+    min-height 100%
 </style>
 

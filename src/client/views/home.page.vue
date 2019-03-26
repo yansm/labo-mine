@@ -41,7 +41,7 @@ export default {
 	.monkey-articles-area
 		width 100%
 		>div
-			margin-right -10px
+			margin-right 0
 </style>
 
 

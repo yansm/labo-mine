@@ -124,10 +124,12 @@ export default {
 			width 100%
 @media screen and (max-width: 756px)
 	.monkey-articles-item
-		width 'calc(50% - 10px)' % 100%
+		width 'calc(50% - 5px)' % 100%
 		margin 0 10px 10px 0
 		display inline-block
 		float initial
+		&:nth-child(2n)
+			margin-right 0
 </style>
 
 

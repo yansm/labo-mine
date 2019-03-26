@@ -67,6 +67,7 @@ body,html,ul,li,ol,img,input,p,h1,h2,h3,h4,h5,h6
   width 100%
   height 100%
   overflow scroll
+  -webkit-overflow-scrolling touch
   position absolute
   top 0
   left 0

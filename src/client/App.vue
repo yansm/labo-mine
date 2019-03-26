@@ -170,5 +170,9 @@ body,html,ul,li,ol,img,input,p,h1,h2,h3,h4,h5,h6
   .container
     width 100%
     padding 0 12px
+		overflow hidden
+  .layout
+    position fixed
+    top 56px
 </style>
 
